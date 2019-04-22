@@ -15,7 +15,7 @@ Metrogistics\AzureSocialite\ServiceProvider::class,
 Publish the config and override any defaults:
 
 ```
-php artisan vendor publish
+php artisan vendor:publish
 ```
 
 Add the necessary env vars:
