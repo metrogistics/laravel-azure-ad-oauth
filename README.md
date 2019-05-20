@@ -60,23 +60,33 @@ If you need to set additional user fields when the user model is created at logi
 4. The "Application ID" is what you will need for your `AZURE_AD_CLIENT_ID` env variable.
 5. Click into "Reply URLs". You will need to whitelist the redirection path for your app here. It will typically be `https://domain.com/login/microsoft/callback`. Click "Save"
 6. Select the permissions required for you app in the "Required permissions" tab.
+	
+	*You can get the user claims/groups from `Directory.Read.All` permissions
+	1. Click the `Add a permission`
+	2. Click the `Microsoft APIs tab`
+	3. Click the `Microsoft Graph`
+	4. Click the `Delegated permissions`
+	5. Select the `Directory -> Directory.Read.All`
+	6. Click the `Add permissions` to save the changes.
+
 7. Add any necessary roles to the manifest:
   1. Click on the "Manifest" tab.
   2. Add roles as necessary using the following format:
 
 		```
 		"appRoles": [
-		    {
-		      "allowedMemberTypes": [
-		        "User"
-		      ],
-		      "displayName": "Manager Role",
-		      "id": "08b0e9e3-8d88-4d99-b630-b9642a70f51e",// Any unique GUID
-		      "isEnabled": true,
-		      "description": "Manage stuff with this role",
-		      "value": "manager"
-		    }
-		  ],
+			{
+				"allowedMemberTypes": [
+					"User"
+				],
+				"displayName": "Manager Role",
+				"id": "08b0e9e3-8d88-4d99-b630-b9642a70f51e",// Any unique GUID
+				"isEnabled": true,
+				"description": "Manage stuff with this role",
+				"value": "manager"
+			}
+		],
+		"groupMembershipClaims": "All", // for the `Directory.Read.All`
 		```
   3. Click "Save"
 8. In the "Keys" tab, enter a description (something like "App Secret"). Set Duration to "Never Expires". Click "Save". Copy the whole key. This will not show again. You will need this value for the `AZURE_AD_CLIENT_SECRET` env variable.
