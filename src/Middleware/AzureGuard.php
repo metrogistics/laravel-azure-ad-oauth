@@ -5,7 +5,7 @@ namespace Metrogistics\AzureSocialite\Middleware;
 use Illuminate\Contracts\Auth\Guard;
 use \Illuminate\Contracts\Auth\Authenticatable;
 
-class Authenticate implements Guard
+class AzureGuard implements Guard
 {
     // public function handle($request, Closure $next, ...$guards)
     // {

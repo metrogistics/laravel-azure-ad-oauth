@@ -4,7 +4,7 @@ namespace Metrogistics\AzureSocialite;
 
 use Illuminate\Support\Facades\Auth;
 use SocialiteProviders\Manager\SocialiteWasCalled;
-use Metrogistics\AzureSocialite\Middleware\Authenticate;
+use Metrogistics\AzureSocialite\Middleware\AzureGuard;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
@@ -20,10 +20,9 @@ class ServiceProvider extends BaseServiceProvider
 
     public function boot()
     {
-        // Auth::extend('azure', function(){
-        //     dd('test');
-        //     return new Authenticate();
-        // });
+        Auth::extend('azure', function ($app, $name, array $config) {
+            return new AzureGuard(Auth::createUserProvider($config['provider']));
+        });
 
         $this->publishes([
             __DIR__.'/config/azure-oath.php' => config_path('azure-oath.php'),
