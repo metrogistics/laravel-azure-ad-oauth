@@ -3,6 +3,7 @@
 namespace Metrogistics\AzureSocialite;
 
 use Illuminate\Support\Arr;
+use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User;
 use Laravel\Socialite\Two\AbstractProvider;
 use Laravel\Socialite\Two\ProviderInterface;
