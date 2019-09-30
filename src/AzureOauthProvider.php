@@ -62,6 +62,11 @@ class AzureOauthProvider extends AbstractProvider implements ProviderInterface
                     ->setRefreshToken(Arr::get($response, 'refresh_token'));
     }
 
+    protected function getCodeFields($state = null)
+    {
+        return array_merge(config('azure-oath.code_fields', []), parent::getCodeFields($state));
+    }
+
     protected function mapUserToObject(array $user)
     {
         return (new User())->setRaw($user)->map([
