@@ -44,7 +44,7 @@ class AzureUser
     {
         $guzzle = new Client();
 
-        $response = $guzzle->post('https://login.microsoftonline.com/common/oauth2/token', [
+        $response = $guzzle->post('https://login.microsoftonline.com/'. config('azure-oath.tenant') .'/oauth2/token', [
             'form_params' => [
                 'client_id' => config('azure-oath.credentials.client_id'),
                 'scope' => 'user.read',
