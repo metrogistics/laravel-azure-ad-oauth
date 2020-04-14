@@ -14,6 +14,8 @@ return [
         // There should be no reason to override this.
         'callback' => 'login/microsoft/callback',
     ],
+    // Tenant ID, only applicable when connecting to a private Azure AD service
+    'tenant' => env('AZURE_AD_TENANT_ID', 'common'),
     'credentials' => [
         'client_id' => env('AZURE_AD_CLIENT_ID', ''),
         'client_secret' => env('AZURE_AD_CLIENT_SECRET', ''),
