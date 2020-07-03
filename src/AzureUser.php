@@ -43,8 +43,9 @@ class AzureUser
     public function refreshAccessToken()
     {
         $guzzle = new Client();
+        $tenant = config('azure-oath.credentials.tenant_id');
 
-        $response = $guzzle->post('https://login.microsoftonline.com/common/oauth2/token', [
+        $response = $guzzle->post('https://login.microsoftonline.com/'.$tenant.'/oauth2/v2.0/token', [
             'form_params' => [
                 'client_id' => config('azure-oath.credentials.client_id'),
                 'scope' => 'user.read',
