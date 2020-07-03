@@ -8,16 +8,17 @@ return [
 
         // The url that will redirect to the SSO URL.
         // There should be no reason to override this.
-        'login' => 'login/microsoft',
+        'login' => 'login',
 
         // The app route that SSO will redirect to.
         // There should be no reason to override this.
-        'callback' => 'login/microsoft/callback',
+        'callback' => 'login/azurecallback',
     ],
     'credentials' => [
+        'tenant_id' => env('AZURE_AD_TENANT_ID', ''),
         'client_id' => env('AZURE_AD_CLIENT_ID', ''),
         'client_secret' => env('AZURE_AD_CLIENT_SECRET', ''),
-        'redirect' => Request::root().'/login/microsoft/callback'
+        'redirect' => env('AZURE_AD_REDIRECT_URI', ''),//Request::root().'/login/callback'
     ],
 
     // The route to redirect the user to upon login.
